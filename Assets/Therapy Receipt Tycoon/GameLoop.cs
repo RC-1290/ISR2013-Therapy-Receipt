@@ -4,57 +4,33 @@ using System.Collections.Generic;
 
 public class GameLoop : MonoBehaviour {
 	
-	public gameScreen currentScreen;
+	public ClientWelcomeScreen welcomeScreen;
+	public WaitingRoom mainWaitingRoom;
+	public TherapyRoom therapy;
+	public ReceiptGUI paymentCounter;
 	
 	
-	
-	public enum gameScreen{
-		ClientWelcome,
-		ClientMovingToWaitingRoom,
-		ClientMovingToPaymentCounter,
-		ReceiptGUI,
-		BudgetBalance,
-		GameOver
+	protected void Start(){
+		welcomeScreen.clientWelcomed += HandleWelcomeScreenclientWelcomed;
+		mainWaitingRoom.ClientEnteredWaitingRoom += HandleClientEnteredWaitingRoom;
+		therapy.TherapyCompleted += HandleTherapyTherapyCompleted;
+	}
+
+	private void HandleTherapyTherapyCompleted (Client targetClient){
+		MoveClientToPaymentCounter(targetClient);
+	}
+
+	private void HandleWelcomeScreenclientWelcomed (Client targetClient){
+		MoveClientToWaitingroom(targetClient);
 	}
 	
-	
+	private void HandleClientEnteredWaitingRoom(Client targetClient){
+		MoveClientToTherapy();
+	}
+		
 	
 	// Update is called once per frame
 	void Update () {
-		switch(currentScreen){
-		
-		case gameScreen.ClientWelcome:
-			WelcomeClient();
-			break;
-		case gameScreen.ClientMovingToWaitingRoom:
-			MoveClientToWaitingroom();
-			break;
-		case gameScreen.ClientMovingToPaymentCounter:
-			
-			MoveClientToPaymentCounter();
-			break;
-		case gameScreen.ReceiptGUI:
-			MoveClientToPaymentCounter();
-			break;
-		case gameScreen.BudgetBalance:
-			ShowBudgetBalance();
-			break;
-		case gameScreen.GameOver:
-			ShowGameOverScreen();
-			break;
-			
-			
-		}
-		
-		MoveClientToTherapy();
-		
-		
-		
-		
-		
-		
-
-		
 		
 	}
 	
@@ -63,20 +39,18 @@ public class GameLoop : MonoBehaviour {
 		
 	}
 	
-	public void MoveClientToWaitingroom(){
-//		waitingRoom.Enqueue(
+	public void MoveClientToWaitingroom(Client currentClient){
+		mainWaitingRoom.SendClientToWaitingRoom(currentClient);
 	}
 	
 	public void MoveClientToTherapy(){
+		Client targetClient = mainWaitingRoom.TakeClient();
 		
+		therapy.ApplyTherapy(targetClient);
 	}
 	
-	public void MoveClientToPaymentCounter(){
-		
-	}
-	
-	public void ShowReceiptGUI(){
-		
+	public void MoveClientToPaymentCounter(Client targetClient){
+		paymentCounter.SetupClientReceipt(targetClient);
 	}
 	
 	public void ShowBudgetBalance(){
@@ -84,7 +58,7 @@ public class GameLoop : MonoBehaviour {
 		
 		if ( GUILayout.Button("Continue")){
 			if (budget <  0){
-				currentScreen = gameScreen.GameOver;
+				ShowGameOverScreen();
 			}
 		}
 		

@@ -1,18 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public delegate void ClientEventHandler(Client targetClient);
+
 public class Client : MonoBehaviour {
 	
 	public float insanity = 0.5f;
+	public float lastTherapyInfluence = 0f;
 	
 	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

@@ -350,6 +350,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 265760501}
+  - 114: {fileID: 265760502}
   m_Layer: 0
   m_Name: ClientCreator
   m_TagString: Untagged
@@ -368,6 +369,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &265760502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265760500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764129ad5ebf57f4daa0516058b5c3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientPrefab: {fileID: 11400000, guid: 18ce8e1421080704ea69b5b5413f049a, type: 2}
 --- !u!1 &473079005
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,13 +389,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 473079006}
+  - 114: {fileID: 473079007}
   m_Layer: 0
   m_Name: Receipt GUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &473079006
 Transform:
   m_ObjectHideFlags: 0
@@ -394,6 +408,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2025938434}
+--- !u!114 &473079007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473079005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d08ebd3efe12743a688b99b42d337a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windowLocation:
+    serializedVersion: 2
+    x: 100
+    y: 100
+    width: 100
+    height: 100
 --- !u!1 &518305205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1268,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1518323136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0373089314, y: -3.95922661, z: -16.8912811}
+  m_LocalPosition: {x: -5.22880268, y: -1.15923691, z: -20.3928299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2020671334}
@@ -1246,7 +1277,7 @@ Transform:
   - {fileID: 242039298}
   - {fileID: 1182826249}
   - {fileID: 1944336346}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2071207475}
 --- !u!1 &1544081633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,6 +2119,8 @@ MonoBehaviour:
     width: 200
     height: 200
   currentClient: {fileID: 0}
+  clientBuilder: {fileID: 265760502}
+  nextScreen: {fileID: 473079007}
 --- !u!1 &2071207474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,4 +2154,5 @@ Transform:
   - {fileID: 249537926}
   - {fileID: 531844088}
   - {fileID: 1296943483}
+  - {fileID: 1518323137}
   m_Father: {fileID: 0}
