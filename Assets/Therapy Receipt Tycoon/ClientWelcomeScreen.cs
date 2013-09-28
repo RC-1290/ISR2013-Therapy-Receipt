@@ -10,7 +10,6 @@ public class ClientWelcomeScreen : MonoBehaviour {
 	public Rect windowLocation = new Rect(100,100, 100,100);
 	
 	public Client currentClient;
-	public ClientCreator clientBuilder;
 	
 	
 	protected void OnGUI(){
@@ -18,31 +17,34 @@ public class ClientWelcomeScreen : MonoBehaviour {
 		
 		
 		if (this.currentClient == null){
-			if (GUILayout.Button("Invite next client")){
-				if (clientBuilder == null) throw new MissingReferenceException("You need to assign a client Builder");
-				currentClient = clientBuilder.CreateClient();
-			}
+			GUILayout.TextArea("It's currently quite calm");
 		}
 		else if (currentClient != null){
 			GUILayout.TextArea("Insanity level: " + currentClient.insanity);
 				
 			if (GUILayout.Button("Take a seat")){
-				OnClientWelcomed();
+				Client targetClient = this.currentClient;
+				OnClientWelcomed(targetClient);
+				currentClient = null;
+				this.enabled = false;
 			}
 		}
 		GUILayout.EndArea();
 		
 	}
 	
-	
+	public void WelcomeClient(Client targetClient){
+		Debug.Log("Welcoming client: " + targetClient);
+		if (this.currentClient == null){
+			this.currentClient = targetClient;
+		}
+	}
 
 	
 	
-	private void OnClientWelcomed(){
-		currentClient = null;
-		this.enabled = false;
+	private void OnClientWelcomed(Client targetClient){
 		if (clientWelcomed != null){
-			clientWelcomed(currentClient);
+			clientWelcomed(targetClient);
 		}
 	}
 	

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class GameLoop : MonoBehaviour {
 	
+	public ClientCreator clientBuilder;
 	public ClientWelcomeScreen welcomeScreen;
 	public WaitingRoom mainWaitingRoom;
 	public TherapyRoom therapy;
@@ -14,6 +15,14 @@ public class GameLoop : MonoBehaviour {
 		welcomeScreen.clientWelcomed += HandleWelcomeScreenclientWelcomed;
 		mainWaitingRoom.ClientEnteredWaitingRoom += HandleClientEnteredWaitingRoom;
 		therapy.TherapyCompleted += HandleTherapyTherapyCompleted;
+	}
+	
+	protected void Update(){
+		if (Input.GetKey(KeyCode.A)){
+			Client targetClient = clientBuilder.CreateClient();
+			welcomeScreen.WelcomeClient(targetClient);
+			
+		}
 	}
 
 	private void HandleTherapyTherapyCompleted (Client targetClient){
@@ -27,17 +36,7 @@ public class GameLoop : MonoBehaviour {
 	private void HandleClientEnteredWaitingRoom(Client targetClient){
 		MoveClientToTherapy();
 	}
-		
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
-	public void WelcomeClient(){
-		
-		
-	}
+
 	
 	public void MoveClientToWaitingroom(Client currentClient){
 		mainWaitingRoom.SendClientToWaitingRoom(currentClient);
@@ -45,7 +44,6 @@ public class GameLoop : MonoBehaviour {
 	
 	public void MoveClientToTherapy(){
 		Client targetClient = mainWaitingRoom.TakeClient();
-		Debug.Log(targetClient);
 		
 		therapy.ApplyTherapy(targetClient);
 	}
