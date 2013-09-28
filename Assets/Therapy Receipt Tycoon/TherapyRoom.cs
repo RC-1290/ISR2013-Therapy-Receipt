@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TherapyRoom : MonoBehaviour {
@@ -12,7 +12,7 @@ public class TherapyRoom : MonoBehaviour {
 	public void ApplyTherapy(Client targetClient){
 		this.lastClient = targetClient;
 		float therapyInfluence = Random.value * (maximumSuccess - minimumSuccess) + minimumSuccess;
-		targetClient.insanity += therapyInfluence;
+		targetClient.Insanity += therapyInfluence;
 		targetClient.lastTherapyInfluence = therapyInfluence;
 		
 		Debug.Log("Applying Therapy");
