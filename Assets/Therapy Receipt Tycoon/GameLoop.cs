@@ -6,7 +6,7 @@ public class GameLoop : MonoBehaviour {
 	
 	public gameScreen currentScreen;
 	
-	private Queue<Client> waitingRoom = new Queue<Client>();
+	
 	
 	public enum gameScreen{
 		ClientWelcome,
