@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ClientCreator : MonoBehaviour {
@@ -17,7 +17,7 @@ public class ClientCreator : MonoBehaviour {
 		Debug.Log("Client Created");
 		
 		Client randomClient = Instantiate(clientPrefab) as Client;
-		randomClient.insanity = Random.value;
+		randomClient.Insanity = Random.value;
 		
 		
 		return randomClient;

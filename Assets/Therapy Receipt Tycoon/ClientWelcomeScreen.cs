@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,7 +20,7 @@ public class ClientWelcomeScreen : MonoBehaviour {
 			GUILayout.TextArea("It's currently quite calm");
 		}
 		else if (currentClient != null){
-			GUILayout.TextArea("Insanity level: " + currentClient.insanity);
+			GUILayout.TextArea("Insanity level: " + currentClient.Insanity);
 				
 			if (GUILayout.Button("Take a seat")){
 				Client targetClient = this.currentClient;
