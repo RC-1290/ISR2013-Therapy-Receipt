@@ -1,0 +1,30 @@
+Assembly-*
+*.sln
+
+Temp/*
+Library
+/Library/*
+
+
+/Builds/
+
+#Output:
+/textureDumps/*
+/Compiled/*
+
+#Debug
+*.pdb
+
+
+#MonoDevelop:
+*.pidb
+*.userprefs
+
+#Windows Stuff:
+*Thumbs.db*
+
+#Mac stuff:
+.DS_Store
+
+
+/DX11Comp_LaurensMathot.zip
