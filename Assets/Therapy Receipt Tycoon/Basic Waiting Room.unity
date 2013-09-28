@@ -396,7 +396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &473079006
 Transform:
   m_ObjectHideFlags: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 473079005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29d08ebd3efe12743a688b99b42d337a, type: 3}
   m_Name: 
@@ -425,6 +425,7 @@ MonoBehaviour:
     y: 100
     width: 100
     height: 100
+  currentClient: {fileID: 0}
 --- !u!1 &518305205
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +690,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 835004225}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &844885657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 844885658}
+  - 114: {fileID: 844885659}
+  m_Layer: 0
+  m_Name: Therapy Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &844885658
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 844885657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.68394327, y: -.272807837, z: 1.70569992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &844885659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 844885657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f918f5a54e7cef240b50a01975f8ed8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximumSuccess: -1
+  minimumSuccess: 1
 --- !u!1 &913423239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,6 +2095,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2025938434}
+  - 114: {fileID: 2025938435}
   m_Layer: 0
   m_Name: Screens
   m_TagString: Untagged
@@ -2074,6 +2116,21 @@ Transform:
   - {fileID: 473079006}
   - {fileID: 2029417570}
   m_Father: {fileID: 0}
+--- !u!114 &2025938435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025938433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca920c73f9fbb34dba5b764c3eda57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  welcomeScreen: {fileID: 2029417571}
+  mainWaitingRoom: {fileID: 2071207476}
+  therapy: {fileID: 844885659}
+  paymentCounter: {fileID: 473079007}
 --- !u!1 &2029417569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,7 +2177,6 @@ MonoBehaviour:
     height: 200
   currentClient: {fileID: 0}
   clientBuilder: {fileID: 265760502}
-  nextScreen: {fileID: 473079007}
 --- !u!1 &2071207474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,6 +2185,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2071207475}
+  - 114: {fileID: 2071207476}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -2156,3 +2213,14 @@ Transform:
   - {fileID: 1296943483}
   - {fileID: 1518323137}
   m_Father: {fileID: 0}
+--- !u!114 &2071207476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2071207474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401df9d93fd69894c85a380e6511b230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

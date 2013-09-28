@@ -45,6 +45,7 @@ public class GameLoop : MonoBehaviour {
 	
 	public void MoveClientToTherapy(){
 		Client targetClient = mainWaitingRoom.TakeClient();
+		Debug.Log(targetClient);
 		
 		therapy.ApplyTherapy(targetClient);
 	}
