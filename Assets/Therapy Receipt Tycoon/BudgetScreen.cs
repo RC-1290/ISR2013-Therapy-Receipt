@@ -25,7 +25,7 @@ public class BudgetScreen : MonoBehaviour {
 		
 	}
 	
-	public void applyCosts(){
+	public void ApplyCosts(){
 		funds -= costs;
 	}
 	
