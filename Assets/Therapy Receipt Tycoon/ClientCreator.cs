@@ -44,6 +44,7 @@ public class ClientCreator : MonoBehaviour {
 	/// </summary>
 	public void HandleRoundStarted(GameRound currentRound){
 		this.enabled = true;
+		this.clientArrivalDelay = 0;
 		lastClientArrived = Time.time;
 		this.currentRound = currentRound;
 		
@@ -65,7 +66,8 @@ public class ClientCreator : MonoBehaviour {
 		return randomClient;
 	}
 	
-	public void CreateNewClients(uint amount){
+	public void CreateNewClients(int amount){
+		if (amount <=0) throw new System.ArgumentOutOfRangeException("amount can not be 0 or lower");
 		for (int i = 0; i < amount; i++) {
 			Client targetClient = CreateClient();
 			arrivingClients.Add(targetClient);
