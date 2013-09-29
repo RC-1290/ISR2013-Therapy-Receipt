@@ -21,6 +21,8 @@ public class GameLoop : MonoBehaviour {
 	
 	public Rect statusScreenLocation = new Rect(100,100,100,100);
 	
+	public GUISkin skin;
+	
 	protected void Start(){
 		clientBuilder.ClientArrived += HandleClientArrived;
 		welcomeScreen.clientWelcomed += HandleWelcomeScreenclientWelcomed;
@@ -32,6 +34,9 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	protected void OnGUI(){
+		GUISkin originalSkin = GUI.skin;
+		GUI.skin = this.skin;
+		
 		GUILayout.BeginArea(this.statusScreenLocation);
 		
 		GUILayout.TextArea("Level " + (this.currentRoundId + 1));
@@ -43,6 +48,8 @@ public class GameLoop : MonoBehaviour {
 		GUILayout.TextArea("Number of Waiting Clients: " + clientsWaitingCount);
 		
 		GUILayout.EndArea();
+		
+		GUI.skin = originalSkin;
 	}
 	
 
