@@ -17,16 +17,16 @@ public class ReceiptGUI : MonoBehaviour {
 		GUILayout.TextArea("Current Twitchyness: " + currentClient.Insanity);
 		
 		if (GUILayout.Button("Regular Cost")){
-			budget.funds += GlobalData.AveragePrice;
+			budget.availableFunds += GlobalData.AveragePrice;
 			CloseScreen();
 		}
 		else if (GUILayout.Button("Higher Cost")){
-			budget.funds += GlobalData.HigherPrice;
+			budget.availableFunds += GlobalData.HigherPrice;
 			currentClient.Insanity += insanityIncrease;
 			CloseScreen();
 		}
 		else if (GUILayout.Button("Lower Cost")){
-			budget.funds += GlobalData.LowerPrice;
+			budget.availableFunds += GlobalData.LowerPrice;
 			currentClient.Insanity =- insanityDecrease;
 			CloseScreen();
 		}

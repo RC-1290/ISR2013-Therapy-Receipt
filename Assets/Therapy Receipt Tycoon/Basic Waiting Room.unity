@@ -1039,8 +1039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f918f5a54e7cef240b50a01975f8ed8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumSuccess: -1
-  minimumSuccess: 1
+  maximumSuccess: -.300000012
+  minimumSuccess: .300000012
 --- !u!1 &913423239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2876,6 +2876,7 @@ MonoBehaviour:
   paymentCounter: {fileID: 473079007}
   hiddenRoom: {fileID: 577529205}
   BudgetOverview: {fileID: 1746071442}
+  rounds: []
 --- !u!1 &2029417569
 GameObject:
   m_ObjectHideFlags: 0

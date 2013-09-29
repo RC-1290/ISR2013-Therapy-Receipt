@@ -3,21 +3,29 @@ using System.Collections;
 
 public class BudgetScreen : MonoBehaviour {
 	
-	
+	/// <summary>
+	/// The amount of funds that were available at the start of the round, used for stat tracking.
+	/// </summary>
 	public decimal m_fundsAtStartofRound = 1000;
-	public decimal funds = 1000;
-	public decimal currentCost = GlobalData.Cost + GlobalData.CostIncrease*GlobalData.round;
+	/// <summary>
+	/// Currently availableFunds
+	/// </summary>
+	public decimal availableFunds = 1000;
+	/// <summary>
+	/// The cost of running a therapy business. Should be set from round settings.
+	/// </summary>
+	public decimal currentCost;
 	
-	public bool GameOver{
-		get { return funds < 0; }
+	public bool IsGameOver{
+		get { return availableFunds < 0; }
 	}
 	
 	protected void OnGUI(){
-		GUILayout.TextArea("Current Funds: €" + funds);
-		GUILayout.TextArea("Income: €" + (funds - m_fundsAtStartofRound));
+		GUILayout.TextArea("Current Funds: €" + availableFunds);
+		GUILayout.TextArea("Income: €" + (availableFunds - m_fundsAtStartofRound));
 		GUILayout.TextArea("Costs: €" + currentCost);
 		
-		GUILayout.TextArea("Total: €" + (funds - currentCost));
+		GUILayout.TextArea("Total: €" + (availableFunds - currentCost));
 		
 		if (GUILayout.Button("Close")){
 			this.enabled = false;
@@ -26,11 +34,11 @@ public class BudgetScreen : MonoBehaviour {
 	}
 	
 	public void applyCosts(){
-		funds -= currentCost;
+		availableFunds -= currentCost;
 	}
 	
 	public void ResetRoundFunds(){
-		m_fundsAtStartofRound = funds;
+		m_fundsAtStartofRound = availableFunds;
 	}
 	
 	
