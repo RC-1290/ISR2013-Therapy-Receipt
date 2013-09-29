@@ -15,11 +15,11 @@ public class WaitingRoom : MonoBehaviour {
 	public uint availableSeats = 6;
 	
 	
-	public void SendClientToWaitingRoom(Client currentClient){
-		this.waitingRoom.Enqueue(currentClient);
+	public void SendClientToWaitingRoom(Client targetClient){
+		this.waitingRoom.Enqueue(targetClient);
 		Debug.Log(this.waitingRoom.Count + " people waiting in the waiting room");
 		
-		OnClientEnteredWaitingRoom(currentClient);
+		OnClientEnteredWaitingRoom(targetClient);
 	}
 	
 	public Client TakeClient(){
