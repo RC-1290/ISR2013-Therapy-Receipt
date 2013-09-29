@@ -3,7 +3,13 @@ using System.Collections;
 
 public delegate void ClientEventHandler(Client targetClient);
 
+	public enum ClientGoal{
+		GetTherapy,
+		PayForTherapy
+	}
+
 public class Client : MonoBehaviour {
+	public ClientGoal currentGoal;
 	
 	public float Insanity{
 		get { return m_insanity; }

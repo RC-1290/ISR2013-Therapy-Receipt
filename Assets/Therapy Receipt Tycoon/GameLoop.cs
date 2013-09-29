@@ -9,16 +9,14 @@ public class GameLoop : MonoBehaviour {
 	public WaitingRoom mainWaitingRoom;
 	public TherapyRoom therapy;
 	public ReceiptGUI paymentCounter;
-	public HiddenWaitingRoom hiddenRoom;
 	public BudgetScreen BudgetOverview;
+	
+	private Queue<Client> clientsWaitingAtDesk = new Queue<Client>();
 	
 	public List<GameRound> rounds = new List<GameRound>();
 	private int currentRoundId = 0;
 	
 	private int ClientCount;
-	private bool StartOfRound = true;
-	private bool CreatingNewClient = false;
-	
 	
 	protected void Start(){
 		welcomeScreen.clientWelcomed += HandleWelcomeScreenclientWelcomed;
@@ -29,28 +27,32 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	protected void Update(){
-		if (ClientCount < GlobalData.MaxClientsPerRound && !CreatingNewClient){
-			Invoke("NewClient", GlobalData.MinSpawnDelay + Random.value*(GlobalData.MaxSpawnDelay-GlobalData.MinSpawnDelay));
-			CreatingNewClient = true;
+		if (!IsAnyScreenVisible()) {
+			if (clientsWaitingAtDesk.Count > 0){
+				Client nextCustomer = this.clientsWaitingAtDesk.Dequeue();
+				
+				switch(nextCustomer.currentGoal){
+				case ClientGoal.GetTherapy:
+					welcomeScreen.WelcomeClient(nextCustomer);
+					break;
+				case ClientGoal.PayForTherapy:
+					paymentCounter.SetupClientReceipt(nextCustomer, rounds[currentRoundId]);
+					break;
+				}
+			}
 		}
-		if (!hiddenRoom.isEmpty && welcomeScreen.currentClient == null && paymentCounter.currentClient == null)
-		{
-			welcomeScreen.WelcomeClient(hiddenRoom.GetClient());
-		}
-		if (GlobalData.passedClients >= rounds[currentRoundId].clientsPerRound){
-			EndRound();	
-		}
+		
+		
 	}
 	
 	private void StartRound(){
-		StartOfRound = false;
 		NewClient();
 		BudgetOverview.currentCost = rounds[currentRoundId].businessCosts;
-//		rounds[currentRoundId].Cost
 	}
 
 	private void HandleTherapyTherapyCompleted (Client targetClient){
-		MoveClientToPaymentCounter(targetClient);
+		targetClient.currentGoal = ClientGoal.PayForTherapy;
+		clientsWaitingAtDesk.Enqueue(targetClient);
 	}
 
 	private void HandleWelcomeScreenclientWelcomed (Client targetClient){
@@ -72,10 +74,6 @@ public class GameLoop : MonoBehaviour {
 		therapy.ApplyTherapy(targetClient);
 	}
 	
-	public void MoveClientToPaymentCounter(Client targetClient){
-		paymentCounter.SetupClientReceipt(targetClient, rounds[currentRoundId]);
-	}
-	
 	public void ShowBudgetBalance(){
 		float budget = 10f;
 		
@@ -91,8 +89,7 @@ public class GameLoop : MonoBehaviour {
 	public void NewClient(){
 		this.ClientCount++;
 		Client targetClient = clientBuilder.CreateClient();
-		hiddenRoom.AddClient(targetClient);
-		CreatingNewClient = false;
+		clientsWaitingAtDesk.Enqueue(targetClient);
 	}
 	
 	public void EndRound()
@@ -106,7 +103,6 @@ public class GameLoop : MonoBehaviour {
 		BudgetOverview.ResetRoundFunds();
 		ClientCount = 0;
 		this.currentRoundId++;
-		StartOfRound = true;
 	}
 	
 	public void ShowGameOverScreen(){
@@ -115,6 +111,10 @@ public class GameLoop : MonoBehaviour {
 		// Number of clients
 		// total income
 		
+	}
+	
+	private bool IsAnyScreenVisible(){
+		return this.welcomeScreen.enabled || this.BudgetOverview.enabled || this.paymentCounter.enabled;
 	}
 	
 }

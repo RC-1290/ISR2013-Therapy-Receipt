@@ -26,6 +26,7 @@ public class ClientWelcomeScreen : MonoBehaviour {
 				Client targetClient = this.currentClient;
 				OnClientWelcomed(targetClient);
 				currentClient = null;
+				this.enabled = false;
 			}
 		}
 		GUILayout.EndArea();
@@ -33,6 +34,7 @@ public class ClientWelcomeScreen : MonoBehaviour {
 	}
 	
 	public void WelcomeClient(Client targetClient){
+		this.enabled = true;
 		Debug.Log("Welcoming client: " + targetClient);
 		if (this.currentClient == null){
 			this.currentClient = targetClient;

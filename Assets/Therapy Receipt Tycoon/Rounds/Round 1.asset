@@ -11,4 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2d441b3e6dc7d42a57dc7ac4b104d3, type: 3}
   m_Name: Round 1
   m_EditorClassIdentifier: 
-  clientsPerRound: 8
+  clientsPerRound: 2
+  regularPrice: 200
+  higherPrice: 300
+  lowerPrice: 150
+  businessCosts: 600
+  highPriceInsanityAdjustment: .100000001
+  lowPriceInsanityAdjustment: -.100000001
