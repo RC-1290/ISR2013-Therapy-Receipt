@@ -16,6 +16,9 @@ public class GameLoop : MonoBehaviour {
 	public List<GameRound> rounds = new List<GameRound>();
 	private int currentRoundId = 0;
 	
+	private int therapiesPaidCount;
+	private int totalVisitorsThisRound;
+	
 	public Rect statusScreenLocation = new Rect(100,100,100,100);
 	
 	protected void Start(){
@@ -49,6 +52,7 @@ public class GameLoop : MonoBehaviour {
 	}
 
 	void HandleClientPaidForTherapy (Client targetClient){
+		this.therapiesPaidCount++;
 		if (targetClient.Insanity > 0){
 			clientBuilder.ScheduleNextAppointment(targetClient);	
 		}
@@ -70,7 +74,7 @@ public class GameLoop : MonoBehaviour {
 				}
 			}
 			else{
-				if (clientBuilder.RemainingAppointments <= 0) EndRound();
+				if (clientBuilder.RemainingAppointments <= 0 && totalVisitorsThisRound - therapiesPaidCount == 0) EndRound();
 				// Otherwise, just wait for clients to show up.
 			}
 		}
@@ -83,6 +87,9 @@ public class GameLoop : MonoBehaviour {
 		
 		clientBuilder.CreateNewClients(currentRound.newClientCount);
 		clientBuilder.HandleRoundStarted(currentRound);
+		
+		this.totalVisitorsThisRound = clientBuilder.RemainingAppointments;
+		this.therapiesPaidCount = 0;
 		
 		BudgetOverview.currentCost = rounds[currentRoundId].businessCosts;
 	}
@@ -108,7 +115,8 @@ public class GameLoop : MonoBehaviour {
 	public void MoveClientToTherapy(){
 		Client targetClient = mainWaitingRoom.TakeClient();
 		
-		therapy.ApplyTherapy(targetClient);
+		// Teleport client to therapy room:
+		targetClient.transform.position = therapy.transform.position;
 	}
 	
 	public void ShowBudgetBalance(){

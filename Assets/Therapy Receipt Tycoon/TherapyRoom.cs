@@ -25,4 +25,14 @@ public class TherapyRoom : MonoBehaviour {
 			TherapyCompleted(this.lastClient);
 		}
 	}
+	
+	protected void OnTriggerEnter(Collider collisionData){
+		Client targetClient = collisionData.GetComponent<Client>();
+		if (targetClient != null){
+			
+			// TODO: call this after a certain amount of time.
+			ApplyTherapy(targetClient);
+		}
+		
+	}
 }
