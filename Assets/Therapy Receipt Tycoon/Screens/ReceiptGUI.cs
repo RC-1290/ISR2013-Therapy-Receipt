@@ -51,6 +51,7 @@ public class ReceiptGUI : MonoBehaviour {
 		GlobalData.passedClients++;
 		this.enabled = false;
 		OnClientPaidForTherapy(this.currentClient);
+		currentClient.currentGoal = ClientGoal.GetTherapy;
 		this.currentClient = null;
 	}
 	
