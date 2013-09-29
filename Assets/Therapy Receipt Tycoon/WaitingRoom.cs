@@ -4,9 +4,15 @@ using System.Collections.Generic;
 
 public class WaitingRoom : MonoBehaviour {
 	
+	public bool hasEmptySeats{
+		get { return availableSeats > waitingRoom.Count; }
+	}
+	
 	public event ClientEventHandler ClientEnteredWaitingRoom;
 	
 	private Queue<Client> waitingRoom = new Queue<Client>();
+	
+	public uint availableSeats = 6;
 	
 	
 	public void SendClientToWaitingRoom(Client currentClient){

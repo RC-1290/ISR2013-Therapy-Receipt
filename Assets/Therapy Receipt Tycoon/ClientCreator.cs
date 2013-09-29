@@ -16,6 +16,7 @@ public class ClientCreator : MonoBehaviour {
 	private List<Client> returningClients = new List<Client>();
 	
 	private GameRound currentRound;
+	public WaitingRoom waitingRoom;
 	
 	
 //	public int clientsToCreateThisRound
@@ -24,8 +25,9 @@ public class ClientCreator : MonoBehaviour {
 	
 	
 	protected void Update(){
+		// Wait untill its time for another guest arrival:
 		if (Time.time >  lastClientArrived + clientArrivalDelay){
-			SendNextClient();
+			if (waitingRoom.hasEmptySeats) SendNextClient();
 			lastClientArrived = Time.time;
 			clientArrivalDelay = Random.value * (currentRound.customerArrivalDelayMax - currentRound.customerArrivalDelayMin) + currentRound.customerArrivalDelayMin;
 		}

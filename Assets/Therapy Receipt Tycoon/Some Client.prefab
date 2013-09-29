@@ -38,7 +38,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7051c1a4d280844ebf9f0771ac6f457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  insanity: .5
+  currentGoal: 0
+  maximumInsanity: 1
+  minimumInsanity: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
