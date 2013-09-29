@@ -5,12 +5,7 @@ public class ReceiptGUI : MonoBehaviour {
 	
 	public Rect windowLocation = new Rect(100,100,100,100);
 	public Client currentClient;
-	public BudgetScreen budget;
-//	public 
-	
-	public decimal regularPrice = 200;
-	public decimal reducedPrice = 150;
-	public decimal increasedPrice = 300;
+	public BudgetScreen budget; 
 	
 	
 	public float insanityIncrease = 0.1f;
@@ -22,16 +17,16 @@ public class ReceiptGUI : MonoBehaviour {
 		GUILayout.TextArea("Current Twitchyness: " + currentClient.Insanity);
 		
 		if (GUILayout.Button("Regular Cost")){
-			budget.funds -= regularPrice;
+			budget.funds += GlobalData.AveragePrice;
 			CloseScreen();
 		}
 		else if (GUILayout.Button("Higher Cost")){
-			budget.funds -= increasedPrice;
+			budget.funds += GlobalData.HigherPrice;
 			currentClient.Insanity += insanityIncrease;
 			CloseScreen();
 		}
 		else if (GUILayout.Button("Lower Cost")){
-			budget.funds -= reducedPrice;
+			budget.funds += GlobalData.LowerPrice;
 			currentClient.Insanity =- insanityDecrease;
 			CloseScreen();
 		}
@@ -49,7 +44,9 @@ public class ReceiptGUI : MonoBehaviour {
 	}
 	
 	private void CloseScreen(){
+		GlobalData.passedClients++;
 		this.enabled = false;
+		Destroy(this.currentClient);
 		this.currentClient = null;
 	}
 	

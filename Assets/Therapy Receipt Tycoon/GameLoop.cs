@@ -9,6 +9,12 @@ public class GameLoop : MonoBehaviour {
 	public WaitingRoom mainWaitingRoom;
 	public TherapyRoom therapy;
 	public ReceiptGUI paymentCounter;
+	public HiddenWaitingRoom hiddenRoom;
+	public BudgetScreen BudgetOverview;
+	
+	private int ClientCount;
+	private bool StartOfRound = true;
+	private bool CreatingNewClient = false;
 	
 	
 	protected void Start(){
@@ -18,10 +24,28 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	protected void Update(){
-		if (Input.GetKey(KeyCode.A)){
-			Client targetClient = clientBuilder.CreateClient();
-			welcomeScreen.WelcomeClient(targetClient);
-			
+		if (ClientCount < GlobalData.MaxClientsPerRound && !CreatingNewClient)
+		{
+			if (StartOfRound)
+			{
+				NewClient();
+				ClientCount++;
+				StartOfRound = false;
+			}
+			else
+			{
+				Invoke("NewClient", GlobalData.MinSpawnDelay + Random.value*(GlobalData.MaxSpawnDelay-GlobalData.MinSpawnDelay));
+				CreatingNewClient = true;
+				ClientCount++;
+			}
+		}
+		if (!hiddenRoom.isEmpty && welcomeScreen.currentClient == null && paymentCounter.currentClient == null)
+		{
+			welcomeScreen.WelcomeClient(hiddenRoom.GetClient());
+		}
+		if (GlobalData.passedClients == GlobalData.MaxClientsPerRound*(GlobalData.round+1))
+		{
+			EndRound();	
 		}
 	}
 
@@ -62,6 +86,27 @@ public class GameLoop : MonoBehaviour {
 		}
 		
 		
+	}
+	
+	public void NewClient()
+	{
+		Client targetClient = clientBuilder.CreateClient();
+		hiddenRoom.AddClient(targetClient);
+		CreatingNewClient = false;
+	}
+	
+	public void EndRound()
+	{
+		BudgetOverview.applyCosts();
+	 	if (BudgetOverview.GameOver)
+		{
+			ShowGameOverScreen();
+			return;
+		}
+		BudgetOverview.ResetRoundFunds();
+		ClientCount = 0;
+		GlobalData.round++;
+		StartOfRound = true;
 	}
 	
 	public void ShowGameOverScreen(){

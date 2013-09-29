@@ -13,7 +13,6 @@ public class TherapyRoom : MonoBehaviour {
 		this.lastClient = targetClient;
 		float therapyInfluence = Random.value * (maximumSuccess - minimumSuccess) + minimumSuccess;
 		targetClient.Insanity += therapyInfluence;
-		targetClient.lastTherapyInfluence = therapyInfluence;
 		
 		Debug.Log("Applying Therapy");
 		
