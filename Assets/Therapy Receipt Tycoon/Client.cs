@@ -20,8 +20,8 @@ public class Client : MonoBehaviour {
 	private float m_insanity = 0.5f;
 	
 	public void checkInsanity(){
-		if (m_insanity > maximumInsanity){}//TODO: Exploding head
-		if (m_insanity < minimumInsanity){}//TODO: Stop visiting the clinic
+		if (m_insanity > maximumInsanity){Debug.Log("Head Explodes");}//TODO: Exploding head
+		if (m_insanity < minimumInsanity){Debug.Log("Client no longer needs clinic");}//TODO: Stop visiting the clinic
 	}
 		
 }
