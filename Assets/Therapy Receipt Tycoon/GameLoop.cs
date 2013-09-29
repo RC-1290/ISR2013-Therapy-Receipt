@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -37,8 +37,7 @@ public class GameLoop : MonoBehaviour {
 		{
 			welcomeScreen.WelcomeClient(hiddenRoom.GetClient());
 		}
-		if (GlobalData.passedClients == GlobalData.MaxClientsPerRound*(GlobalData.round+1))
-		{
+		if (GlobalData.passedClients >= rounds[currentRoundId].clientsPerRound){
 			EndRound();	
 		}
 	}
@@ -46,7 +45,7 @@ public class GameLoop : MonoBehaviour {
 	private void StartRound(){
 		StartOfRound = false;
 		NewClient();
-		BudgetOverview.currentCost = rounds[currentRoundId].Cost;
+		BudgetOverview.currentCost = rounds[currentRoundId].businessCosts;
 //		rounds[currentRoundId].Cost
 	}
 
@@ -74,7 +73,7 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	public void MoveClientToPaymentCounter(Client targetClient){
-		paymentCounter.SetupClientReceipt(targetClient);
+		paymentCounter.SetupClientReceipt(targetClient, rounds[currentRoundId]);
 	}
 	
 	public void ShowBudgetBalance(){
@@ -106,7 +105,7 @@ public class GameLoop : MonoBehaviour {
 		}
 		BudgetOverview.ResetRoundFunds();
 		ClientCount = 0;
-		GlobalData.round++;
+		this.currentRoundId++;
 		StartOfRound = true;
 	}
 	

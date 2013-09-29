@@ -7,14 +7,6 @@ public class GlobalData : MonoBehaviour {
 	public static float MaxSpawnDelay = 12f;
 	public static int MaxClientsPerRound = 10;
 	
-	public static decimal AveragePrice = 200;
-	public static decimal HigherPrice = 300;
-	public static decimal LowerPrice = 150;
-	public static decimal Cost = MaxClientsPerRound*LowerPrice;
-	public static decimal CostIncrease = 100;
-	public static int round = 0;
-	
-	
 	//Statistics
 	public static int passedClients = 0;
 	public static int healedClients = 0;

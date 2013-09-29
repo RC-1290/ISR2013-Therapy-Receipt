@@ -2876,7 +2876,9 @@ MonoBehaviour:
   paymentCounter: {fileID: 473079007}
   hiddenRoom: {fileID: 577529205}
   BudgetOverview: {fileID: 1746071442}
-  rounds: []
+  rounds:
+  - {fileID: 11400000, guid: 6e321ea056d2bec448fddcd3cd30b027, type: 2}
+  - {fileID: 11400000, guid: 7b285611c8b1351469518ccf0138f736, type: 2}
 --- !u!1 &2029417569
 GameObject:
   m_ObjectHideFlags: 0

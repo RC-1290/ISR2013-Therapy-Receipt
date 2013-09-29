@@ -7,27 +7,28 @@ public class ReceiptGUI : MonoBehaviour {
 	public Client currentClient;
 	public BudgetScreen budget; 
 	
+	private GameRound currentRound;
 	
-	public float insanityIncrease = 0.1f;
-	public float insanityDecrease = -0.1f;
+	
 	
 	protected void OnGUI(){
 		GUILayout.BeginArea(windowLocation);
 		
 		GUILayout.TextArea("Current Twitchyness: " + currentClient.Insanity);
 		
-		if (GUILayout.Button("Regular Cost")){
-			budget.availableFunds += GlobalData.AveragePrice;
+		
+		if (GUILayout.Button("Higher Cost")){
+			budget.availableFunds += currentRound.higherPrice;
+			currentClient.Insanity += currentRound.highPriceInsanityAdjustment;
 			CloseScreen();
 		}
-		else if (GUILayout.Button("Higher Cost")){
-			budget.availableFunds += GlobalData.HigherPrice;
-			currentClient.Insanity += insanityIncrease;
+		else if (GUILayout.Button("Regular Cost")){
+			budget.availableFunds += currentRound.regularPrice;
 			CloseScreen();
 		}
 		else if (GUILayout.Button("Lower Cost")){
-			budget.availableFunds += GlobalData.LowerPrice;
-			currentClient.Insanity =- insanityDecrease;
+			budget.availableFunds += currentRound.lowerPrice;
+			currentClient.Insanity += currentRound.lowPriceInsanityAdjustment;
 			CloseScreen();
 		}
 		
@@ -37,8 +38,9 @@ public class ReceiptGUI : MonoBehaviour {
 		GUILayout.EndArea();
 	}
 	
-	public void SetupClientReceipt(Client targetClient){
+	public void SetupClientReceipt(Client targetClient, GameRound currentRound){
 		Debug.Log("Setup Client Receipt");
+		this.currentRound = currentRound;
 		this.currentClient = targetClient;
 		this.enabled = true;
 	}
