@@ -15,6 +15,7 @@ public class WaitingRoom : MonoBehaviour {
 	private Queue<Client> waitingRoom = new Queue<Client>();
 	private Client[] orderedClients = new Client[6];	
 	public Transform[] SeatPosition = new Transform[6];
+	public Transform Entrance;
 
 	
 	public void SendClientToWaitingRoom(Client targetClient){
@@ -23,6 +24,7 @@ public class WaitingRoom : MonoBehaviour {
 		{
 			if (orderedClients[i] == null)
 			{
+				targetClient.transform.position = Entrance.position;
 				targetClient.GetComponent<NavMeshAgent>().destination = SeatPosition[i].position;
 				orderedClients[i] = targetClient;
 				break;
