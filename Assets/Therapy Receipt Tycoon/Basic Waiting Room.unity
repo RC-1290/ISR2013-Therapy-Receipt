@@ -581,8 +581,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windowLocation:
     serializedVersion: 2
-    x: 100
-    y: 100
+    x: 40
+    y: 150
     width: 100
     height: 336.959991
   currentClient: {fileID: 0}
@@ -609,7 +609,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 476140484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.312682211, y: .634659171, z: -1.36684251}
+  m_LocalPosition: {x: -5.99662542, y: .907467008, z: -3.07254243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494674018}
@@ -620,7 +620,7 @@ Transform:
   - {fileID: 1230477220}
   - {fileID: 1280914684}
   - {fileID: 1380747828}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 844885658}
 --- !u!1 &494674014
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,45 +883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3dd09495d184840a48bf0c1fcbcda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &577529203
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 577529204}
-  - 114: {fileID: 577529205}
-  m_Layer: 0
-  m_Name: Hidden Waiting Room
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &577529204
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 577529203}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.38449192, y: -.991378188, z: -.516163826}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!114 &577529205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 577529203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f319e2c451038e8429d8f76a248146d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
 --- !u!1 &588659377
 GameObject:
@@ -1106,7 +1067,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.68394327, y: -.272807837, z: 1.70569992}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 476140485}
   m_Father: {fileID: 0}
 --- !u!114 &844885659
 MonoBehaviour:
@@ -1413,6 +1375,32 @@ Transform:
   - {fileID: 913423243}
   - {fileID: 835004226}
   m_Father: {fileID: 2071207475}
+--- !u!1 &1191707697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1191707698}
+  m_Layer: 0
+  m_Name: Status Screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1191707698
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1191707697}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2025938434}
 --- !u!1 &1206766038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,10 +2386,10 @@ MonoBehaviour:
   currentCost: 0
   screenArea:
     serializedVersion: 2
-    x: 200
-    y: 200
+    x: 250
+    y: 130
     width: 100
-    height: 100
+    height: 200
 --- !u!1 &1780584809
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,6 +3018,7 @@ Transform:
   m_Children:
   - {fileID: 1746071441}
   - {fileID: 473079006}
+  - {fileID: 1191707698}
   - {fileID: 2029417570}
   m_Father: {fileID: 0}
 --- !u!114 &2025938435
@@ -3050,13 +3039,13 @@ MonoBehaviour:
   paymentCounter: {fileID: 473079007}
   BudgetOverview: {fileID: 1746071442}
   rounds:
-  - {fileID: 11400000, guid: 6e321ea056d2bec448fddcd3cd30b027, type: 2}
+  - {fileID: 11400000, guid: 214d90959f1055d46bbbfd8a44d8fa6f, type: 2}
   - {fileID: 11400000, guid: 7b285611c8b1351469518ccf0138f736, type: 2}
   statusScreenLocation:
     serializedVersion: 2
-    x: 100
-    y: 100
-    width: 100
+    x: 40
+    y: 40
+    width: 200
     height: 100
 --- !u!1 &2029417569
 GameObject:
@@ -3091,7 +3080,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2029417569}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e7635c84f4ec644b9b2e7f422a35577, type: 3}
   m_Name: 

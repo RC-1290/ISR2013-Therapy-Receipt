@@ -31,6 +31,8 @@ public class GameLoop : MonoBehaviour {
 	protected void OnGUI(){
 		GUILayout.BeginArea(this.statusScreenLocation);
 		
+		GUILayout.TextArea("Level " + (this.currentRoundId + 1));
+		
 		GUILayout.TextArea("Remaining Appointments: " + this.clientBuilder.RemainingAppointments);
 		
 		int clientsWaitingCount = this.clientsWaitingAtDesk.Count;

@@ -3,8 +3,9 @@ using System.Collections;
 
 [System.Serializable]
 public class GameRound : ScriptableObject {
-
-	public uint newClientCount = 8;
+	
+	[SerializeField]
+	public int newClientCount = 8;
 	
 	public float regularPrice = 200;
 	public float higherPrice = 300;
