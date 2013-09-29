@@ -4,9 +4,9 @@ using System.Collections;
 public class BudgetScreen : MonoBehaviour {
 	
 	
-	public decimal m_fundsAtStartofRound = 0;
+	public decimal m_fundsAtStartofRound = 1000;
 	public decimal funds = 1000;
-	public decimal costs = 600;
+	public decimal currentCost = GlobalData.Cost + GlobalData.CostIncrease*GlobalData.round;
 	
 	public bool GameOver{
 		get { return funds < 0; }
@@ -15,9 +15,9 @@ public class BudgetScreen : MonoBehaviour {
 	protected void OnGUI(){
 		GUILayout.TextArea("Current Funds: €" + funds);
 		GUILayout.TextArea("Income: €" + (funds - m_fundsAtStartofRound));
-		GUILayout.TextArea("Costs: €" + costs);
+		GUILayout.TextArea("Costs: €" + currentCost);
 		
-		GUILayout.TextArea("Total: €" + (funds - costs));
+		GUILayout.TextArea("Total: €" + (funds - currentCost));
 		
 		if (GUILayout.Button("Close")){
 			this.enabled = false;
@@ -25,8 +25,8 @@ public class BudgetScreen : MonoBehaviour {
 		
 	}
 	
-	public void ApplyCosts(){
-		funds -= costs;
+	public void applyCosts(){
+		funds -= currentCost;
 	}
 	
 	public void ResetRoundFunds(){

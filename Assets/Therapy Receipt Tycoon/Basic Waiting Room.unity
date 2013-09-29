@@ -793,6 +793,82 @@ Transform:
   m_LocalScale: {x: 6, y: .100000001, z: 9.35999966}
   m_Children: []
   m_Father: {fileID: 2071207475}
+--- !u!1 &556544285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 556544286}
+  - 114: {fileID: 556544287}
+  m_Layer: 0
+  m_Name: GlobalDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &556544286
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556544285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.52210188, y: .686138034, z: -7.67695999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &556544287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556544285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de3dd09495d184840a48bf0c1fcbcda7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &577529203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 577529204}
+  - 114: {fileID: 577529205}
+  m_Layer: 0
+  m_Name: Hidden Waiting Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577529204
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577529203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.38449192, y: -.991378188, z: -.516163826}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &577529205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577529203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f319e2c451038e8429d8f76a248146d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &588659377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,6 +2874,8 @@ MonoBehaviour:
   mainWaitingRoom: {fileID: 2071207476}
   therapy: {fileID: 844885659}
   paymentCounter: {fileID: 473079007}
+  hiddenRoom: {fileID: 577529205}
+  BudgetOverview: {fileID: 1746071442}
 --- !u!1 &2029417569
 GameObject:
   m_ObjectHideFlags: 0

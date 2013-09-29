@@ -18,7 +18,6 @@ public class Client : MonoBehaviour {
 	
 	
 	private float m_insanity = 0.5f;
-	public float lastTherapyInfluence = 0f;
 	
 	public void checkInsanity(){
 		if (m_insanity > maximumInsanity){}//TODO: Exploding head

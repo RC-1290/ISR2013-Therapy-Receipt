@@ -26,7 +26,6 @@ public class ClientWelcomeScreen : MonoBehaviour {
 				Client targetClient = this.currentClient;
 				OnClientWelcomed(targetClient);
 				currentClient = null;
-				this.enabled = false;
 			}
 		}
 		GUILayout.EndArea();
