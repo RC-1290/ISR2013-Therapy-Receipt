@@ -16,6 +16,7 @@ public class GameLoop : MonoBehaviour {
 	public List<GameRound> rounds = new List<GameRound>();
 	private int currentRoundId = 0;
 	
+	public Rect statusScreenLocation = new Rect(100,100,100,100);
 	
 	protected void Start(){
 		clientBuilder.ClientArrived += HandleClientArrived;
@@ -26,6 +27,19 @@ public class GameLoop : MonoBehaviour {
 		
 		StartRound();
 	}
+	
+	protected void OnGUI(){
+		GUILayout.BeginArea(this.statusScreenLocation);
+		
+		GUILayout.TextArea("Remaining Appointments: " + this.clientBuilder.RemainingAppointments);
+		
+		int clientsWaitingCount = this.clientsWaitingAtDesk.Count;
+		if (this.welcomeScreen.currentClient != null) clientsWaitingCount++;
+		GUILayout.TextArea("Number of Waiting Clients: " + clientsWaitingCount);
+		
+		GUILayout.EndArea();
+	}
+	
 
 	void HandleClientArrived (Client targetClient){
 		clientsWaitingAtDesk.Enqueue(targetClient);
@@ -54,7 +68,7 @@ public class GameLoop : MonoBehaviour {
 				}
 			}
 			else{
-				if (clientBuilder.remainingArrivals <= 0) EndRound();
+				if (clientBuilder.RemainingAppointments <= 0) EndRound();
 				// Otherwise, just wait for clients to show up.
 			}
 		}
@@ -108,20 +122,27 @@ public class GameLoop : MonoBehaviour {
 		
 	}
 	
-	public void EndRound()
-	{
+	public void EndRound(){
 		BudgetOverview.applyCosts();
 	 	if (BudgetOverview.IsGameOver)
 		{
 			ShowGameOverScreen();
 			return;
 		}
+		else{
+			BudgetOverview.ShowScreen();			
+		}
+	}
+	
+	public void NextLevel(){
 		BudgetOverview.ResetRoundFunds();
+			
 		this.currentRoundId++;
+		StartRound();
 	}
 	
 	public void ShowGameOverScreen(){
-		
+		Debug.Log("Game Over");
 		// Display stats
 		// Number of clients
 		// total income

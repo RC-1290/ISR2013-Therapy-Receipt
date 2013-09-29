@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ClientCreator : MonoBehaviour {
 	
-	public int remainingArrivals{
+	public int RemainingAppointments{
 		get { return arrivingClients.Count; }
 	}
 	
@@ -80,7 +80,10 @@ public class ClientCreator : MonoBehaviour {
 		Client arrivingClient = arrivingClients[0];
 		arrivingClients.Remove(arrivingClient);
 		OnClientArrived(arrivingClient);
-		if (arrivingClients.Count <= 0) OnLastClientArrived(arrivingClient);
+		if (arrivingClients.Count <= 0){
+			this.enabled = false;
+			OnLastClientArrived(arrivingClient);
+		}
 	}
 	
 	public void OnClientArrived(Client targetClient){

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BudgetScreen : MonoBehaviour {
 	
+	public GameLoop gameManager;
+	
 	/// <summary>
 	/// The amount of funds that were available at the start of the round, used for stat tracking.
 	/// </summary>
@@ -29,8 +31,14 @@ public class BudgetScreen : MonoBehaviour {
 		
 		if (GUILayout.Button("Close")){
 			this.enabled = false;
+			if (this.IsGameOver) gameManager.ShowGameOverScreen();
+			else gameManager.NextLevel();
 		}
 		
+	}
+	
+	public void ShowScreen(){
+		this.enabled = true;
 	}
 	
 	public void applyCosts(){

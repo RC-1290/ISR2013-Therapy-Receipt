@@ -447,6 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientPrefab: {fileID: 11400000, guid: 18ce8e1421080704ea69b5b5413f049a, type: 2}
+  waitingRoom: {fileID: 2071207476}
+  clientArrivalDelay: 0
 --- !u!1 &316952186
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +868,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f319e2c451038e8429d8f76a248146d8, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
 --- !u!1 &588659377
 GameObject:
@@ -2252,6 +2255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97190eb333c68f746bbb755fa3ea6db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 2025938435}
   m_fundsAtStartofRound: 1000
   availableFunds: 1000
   currentCost: 0
@@ -2875,7 +2879,6 @@ MonoBehaviour:
   mainWaitingRoom: {fileID: 2071207476}
   therapy: {fileID: 844885659}
   paymentCounter: {fileID: 473079007}
-  hiddenRoom: {fileID: 577529205}
   BudgetOverview: {fileID: 1746071442}
   rounds:
   - {fileID: 11400000, guid: 6e321ea056d2bec448fddcd3cd30b027, type: 2}
@@ -2935,7 +2938,7 @@ GameObject:
   - 4: {fileID: 2071207475}
   - 114: {fileID: 2071207476}
   m_Layer: 0
-  m_Name: Room
+  m_Name: Waiting Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
