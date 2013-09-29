@@ -80,7 +80,6 @@ public class GameLoop : MonoBehaviour {
 		GameRound currentRound = rounds[currentRoundId];
 		
 		clientBuilder.CreateNewClients(currentRound.newClientCount);
-		
 		clientBuilder.HandleRoundStarted(currentRound);
 		
 		BudgetOverview.currentCost = rounds[currentRoundId].businessCosts;
@@ -138,6 +137,7 @@ public class GameLoop : MonoBehaviour {
 		BudgetOverview.ResetRoundFunds();
 			
 		this.currentRoundId++;
+		if (this.currentRoundId > this.rounds.Count - 1) this.currentRoundId = 0;// Loop back around.
 		StartRound();
 	}
 	

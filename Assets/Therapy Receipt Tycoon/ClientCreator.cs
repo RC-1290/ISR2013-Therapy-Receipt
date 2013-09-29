@@ -43,6 +43,7 @@ public class ClientCreator : MonoBehaviour {
 	/// Should be called at the start of a round.
 	/// </summary>
 	public void HandleRoundStarted(GameRound currentRound){
+		this.enabled = true;
 		lastClientArrived = Time.time;
 		this.currentRound = currentRound;
 		

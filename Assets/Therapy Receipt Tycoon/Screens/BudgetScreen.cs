@@ -18,11 +18,14 @@ public class BudgetScreen : MonoBehaviour {
 	/// </summary>
 	public float currentCost;
 	
+	public Rect screenArea = new Rect(200,200,100,100);
+	
 	public bool IsGameOver{
 		get { return availableFunds < 0; }
 	}
 	
 	protected void OnGUI(){
+		GUILayout.BeginArea(this.screenArea);
 		GUILayout.TextArea("Current Funds: €" + availableFunds);
 		GUILayout.TextArea("Income: €" + (availableFunds - m_fundsAtStartofRound));
 		GUILayout.TextArea("Costs: €" + currentCost);
@@ -34,6 +37,7 @@ public class BudgetScreen : MonoBehaviour {
 			if (this.IsGameOver) gameManager.ShowGameOverScreen();
 			else gameManager.NextLevel();
 		}
+		GUILayout.EndArea();
 		
 	}
 	
