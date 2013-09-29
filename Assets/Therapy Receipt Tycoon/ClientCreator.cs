@@ -15,13 +15,20 @@ public class ClientCreator : MonoBehaviour {
 	private List<Client> arrivingClients = new List<Client>();
 	private List<Client> returningClients = new List<Client>();
 	
+	private GameRound currentRound;
+	
 	
 //	public int clientsToCreateThisRound
-	private float lastClientCreated;
+	private float lastClientArrived;
+	public float clientArrivalDelay = 0;
 	
 	
 	protected void Update(){
-//		Time.time
+		if (Time.time >  lastClientArrived + clientArrivalDelay){
+			SendNextClient();
+			lastClientArrived = Time.time;
+			clientArrivalDelay = Random.value * (currentRound.customerArrivalDelayMax - currentRound.customerArrivalDelayMin) + currentRound.customerArrivalDelayMin;
+		}
 	}
 	
 	
@@ -33,7 +40,9 @@ public class ClientCreator : MonoBehaviour {
 	/// <summary>
 	/// Should be called at the start of a round.
 	/// </summary>
-	public void HandleRoundStarted(){
+	public void HandleRoundStarted(GameRound currentRound){
+		lastClientArrived = Time.time;
+		this.currentRound = currentRound;
 		
 		// Invite Returning Customers:
 		arrivingClients.AddRange(returningClients);
@@ -47,8 +56,8 @@ public class ClientCreator : MonoBehaviour {
 		Debug.Log("Client Created");
 		
 		Client randomClient = Instantiate(clientPrefab) as Client;
+			
 		randomClient.Insanity = Random.value;
-		
 		
 		return randomClient;
 	}

@@ -14,5 +14,8 @@ public class GameRound : ScriptableObject {
 	public float highPriceInsanityAdjustment = 0.1f;
 	public float lowPriceInsanityAdjustment = -0.1f;
 	
+	public float customerArrivalDelayMin = 2f;
+	public float customerArrivalDelayMax = 15f;
+	
 	
 }

@@ -18,12 +18,18 @@ public class GameLoop : MonoBehaviour {
 	
 	
 	protected void Start(){
+		clientBuilder.ClientArrived += HandleClientArrived;
 		welcomeScreen.clientWelcomed += HandleWelcomeScreenclientWelcomed;
 		mainWaitingRoom.ClientEnteredWaitingRoom += HandleClientEnteredWaitingRoom;
 		therapy.TherapyCompleted += HandleTherapyTherapyCompleted;
 		paymentCounter.ClientPaidForTherapy += HandleClientPaidForTherapy;
 		
 		StartRound();
+	}
+
+	void HandleClientArrived (Client targetClient){
+		clientsWaitingAtDesk.Enqueue(targetClient);
+		Debug.Log("Client Arrived. " + clientsWaitingAtDesk.Count + " clients are waiting");
 	}
 
 	void HandleClientPaidForTherapy (Client targetClient){
@@ -37,7 +43,7 @@ public class GameLoop : MonoBehaviour {
 		if (!IsAnyScreenVisible()) {
 			if (clientsWaitingAtDesk.Count > 0){
 				Client nextCustomer = this.clientsWaitingAtDesk.Dequeue();
-				
+				Debug.Log(nextCustomer.currentGoal);
 				switch(nextCustomer.currentGoal){
 				case ClientGoal.GetTherapy:
 					welcomeScreen.WelcomeClient(nextCustomer);
@@ -61,7 +67,7 @@ public class GameLoop : MonoBehaviour {
 		
 		clientBuilder.CreateNewClients(currentRound.newClientCount);
 		
-		clientBuilder.HandleRoundStarted();
+		clientBuilder.HandleRoundStarted(currentRound);
 		
 		BudgetOverview.currentCost = rounds[currentRoundId].businessCosts;
 	}
