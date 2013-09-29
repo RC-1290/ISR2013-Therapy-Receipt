@@ -48,8 +48,8 @@ public class GameLoop : MonoBehaviour {
 				}
 			}
 			else{
-				//TODO: If no more clients will be coming, show end of round stuff.
-				//Otherwise, just wait for clients to show up.
+				if (clientBuilder.remainingArrivals <= 0) EndRound();
+				// Otherwise, just wait for clients to show up.
 			}
 		}
 		
@@ -57,7 +57,12 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	private void StartRound(){
-		NewClient();
+		GameRound currentRound = rounds[currentRoundId];
+		
+		clientBuilder.CreateNewClients(currentRound.newClientCount);
+		
+		clientBuilder.HandleRoundStarted();
+		
 		BudgetOverview.currentCost = rounds[currentRoundId].businessCosts;
 	}
 
@@ -95,11 +100,6 @@ public class GameLoop : MonoBehaviour {
 		}
 		
 		
-	}
-	
-	public void NewClient(){
-		Client targetClient = clientBuilder.CreateClient();
-		clientsWaitingAtDesk.Enqueue(targetClient);
 	}
 	
 	public void EndRound()
