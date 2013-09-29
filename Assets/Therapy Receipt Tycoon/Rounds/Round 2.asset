@@ -15,8 +15,8 @@ MonoBehaviour:
   regularPrice: 200
   higherPrice: 300
   lowerPrice: 150
-  businessCosts: 600
-  highPriceInsanityAdjustment: .100000001
-  lowPriceInsanityAdjustment: -.100000001
+  costIncrease: 800
+  highPriceInsanityAdjustment: .400000006
+  lowPriceInsanityAdjustment: -.200000003
   customerArrivalDelayMin: 2
   customerArrivalDelayMax: 6

@@ -16,7 +16,7 @@ public class BudgetScreen : MonoBehaviour {
 	/// <summary>
 	/// The cost of running a therapy business. Should be set from round settings.
 	/// </summary>
-	public float currentCost;
+	public float currentCost = 800;
 	
 	public Rect screenArea = new Rect(200,200,100,100);
 	
@@ -34,6 +34,8 @@ public class BudgetScreen : MonoBehaviour {
 		
 		if (GUILayout.Button("Close")){
 			this.enabled = false;
+			availableFunds -= currentCost;
+			m_fundsAtStartofRound = availableFunds;
 			if (this.IsGameOver) gameManager.ShowGameOverScreen();
 			else gameManager.NextLevel();
 		}
@@ -45,13 +47,6 @@ public class BudgetScreen : MonoBehaviour {
 		this.enabled = true;
 	}
 	
-	public void applyCosts(){
-		availableFunds -= currentCost;
-	}
-	
-	public void ResetRoundFunds(){
-		m_fundsAtStartofRound = availableFunds;
-	}
 	
 	
 	

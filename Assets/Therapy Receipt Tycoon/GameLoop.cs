@@ -91,7 +91,7 @@ public class GameLoop : MonoBehaviour {
 		this.totalVisitorsThisRound = clientBuilder.RemainingAppointments;
 		this.therapiesPaidCount = 0;
 		
-		BudgetOverview.currentCost = rounds[currentRoundId].businessCosts;
+		BudgetOverview.currentCost += rounds[currentRoundId].costIncrease;
 	}
 
 	private void HandleTherapyTherapyCompleted (Client targetClient){
@@ -132,7 +132,6 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	public void EndRound(){
-		BudgetOverview.applyCosts();
 	 	if (BudgetOverview.IsGameOver)
 		{
 			ShowGameOverScreen();
@@ -144,7 +143,6 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	public void NextLevel(){
-		BudgetOverview.ResetRoundFunds();
 			
 		this.currentRoundId++;
 		if (this.currentRoundId > this.rounds.Count - 1) this.currentRoundId = 0;// Loop back around.
