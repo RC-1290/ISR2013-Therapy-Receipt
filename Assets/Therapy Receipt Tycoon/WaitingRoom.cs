@@ -24,8 +24,8 @@ public class WaitingRoom : MonoBehaviour {
 		{
 			if (orderedClients[i] == null)
 			{
-				targetClient.transform.position = Entrance.position;
-				targetClient.GetComponent<NavMeshAgent>().destination = SeatPosition[i].position;
+				//targetClient.transform.position = Entrance.position;
+				//targetClient.GetComponent<NavMeshAgent>().destination = SeatPosition[i].position;
 				orderedClients[i] = targetClient;
 				break;
 			}
