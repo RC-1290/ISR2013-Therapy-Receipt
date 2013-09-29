@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ReceiptGUI : MonoBehaviour {
 	
+	public event ClientEventHandler ClientPaidForTherapy;
+	
 	public Rect windowLocation = new Rect(100,100,100,100);
 	public Client currentClient;
 	public BudgetScreen budget; 
@@ -48,8 +50,14 @@ public class ReceiptGUI : MonoBehaviour {
 	private void CloseScreen(){
 		GlobalData.passedClients++;
 		this.enabled = false;
-		Destroy(this.currentClient);
+		OnClientPaidForTherapy(this.currentClient);
 		this.currentClient = null;
+	}
+	
+	private void OnClientPaidForTherapy(Client targetClient){
+		if (ClientPaidForTherapy != null){
+			ClientPaidForTherapy(targetClient);
+		}
 	}
 	
 }

@@ -16,14 +16,21 @@ public class GameLoop : MonoBehaviour {
 	public List<GameRound> rounds = new List<GameRound>();
 	private int currentRoundId = 0;
 	
-	private int ClientCount;
 	
 	protected void Start(){
 		welcomeScreen.clientWelcomed += HandleWelcomeScreenclientWelcomed;
 		mainWaitingRoom.ClientEnteredWaitingRoom += HandleClientEnteredWaitingRoom;
 		therapy.TherapyCompleted += HandleTherapyTherapyCompleted;
+		paymentCounter.ClientPaidForTherapy += HandleClientPaidForTherapy;
 		
 		StartRound();
+	}
+
+	void HandleClientPaidForTherapy (Client targetClient){
+		if (targetClient.Insanity > 0){
+			clientBuilder.ScheduleNextAppointment(targetClient);	
+		}
+		else Destroy(targetClient);// Client has recovered completely
 	}
 	
 	protected void Update(){
@@ -39,6 +46,10 @@ public class GameLoop : MonoBehaviour {
 					paymentCounter.SetupClientReceipt(nextCustomer, rounds[currentRoundId]);
 					break;
 				}
+			}
+			else{
+				//TODO: If no more clients will be coming, show end of round stuff.
+				//Otherwise, just wait for clients to show up.
 			}
 		}
 		
@@ -87,7 +98,6 @@ public class GameLoop : MonoBehaviour {
 	}
 	
 	public void NewClient(){
-		this.ClientCount++;
 		Client targetClient = clientBuilder.CreateClient();
 		clientsWaitingAtDesk.Enqueue(targetClient);
 	}
@@ -101,7 +111,6 @@ public class GameLoop : MonoBehaviour {
 			return;
 		}
 		BudgetOverview.ResetRoundFunds();
-		ClientCount = 0;
 		this.currentRoundId++;
 	}
 	
