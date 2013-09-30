@@ -18,6 +18,7 @@ public class ReceiptGUI : MonoBehaviour {
 		
 		GUILayout.TextArea("Current Twitchyness: " + currentClient.Insanity);
 		
+		GUILayout.TextArea("Receipt: " );
 		
 		if (GUILayout.Button("Higher Cost")){
 			budget.availableFunds += currentRound.higherPrice;
