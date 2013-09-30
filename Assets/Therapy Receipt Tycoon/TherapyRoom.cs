@@ -27,7 +27,8 @@ public class TherapyRoom : MonoBehaviour {
 	}
 	
 	protected void OnTriggerEnter(Collider collisionData){
-		Client targetClient = collisionData.GetComponent<Client>();
+		Client targetClient = collisionData.attachedRigidbody.GetComponent<Client>();
+		//Client targetClient = collisionData.GetComponent<Client>();
 		if (targetClient != null){
 			
 			// TODO: call this after a certain amount of time.
